@@ -11,7 +11,7 @@ public class OpenRouterService : IAIProvider
 
     public OpenRouterService(IConfiguration config)
     {
-        _apiKey = "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";
+        _apiKey = config["OpenRouter:ApiKey"];
         _model = config["OpenRouter:Model"] ?? "openai/gpt-4o-mini";
     }
 
