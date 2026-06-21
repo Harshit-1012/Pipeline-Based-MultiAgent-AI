@@ -47,7 +47,11 @@ public class OpenRouterService : IAIProvider
         var json = await response.Content.ReadAsStringAsync();
 
         using var doc = JsonDocument.Parse(json);
-
+if (!doc.RootElement.TryGetProperty("choices", out var choices))
+{
+    var error = doc.RootElement.ToString();
+    throw new Exception("OpenRouter failed: " + error);
+}
         return doc.RootElement
             .GetProperty("choices")[0]
             .GetProperty("message")
