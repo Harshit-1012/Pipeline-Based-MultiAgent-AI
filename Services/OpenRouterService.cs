@@ -24,7 +24,7 @@ public class OpenRouterService : IAIProvider
 
         request.Headers.Authorization =
             new AuthenticationHeaderValue("Bearer", _apiKey);
-Console.WriteLine("API KEY = " + apiKey);
+Console.WriteLine("API KEY = " + _apiKey);
         request.Headers.Add("HTTP-Referer", "https://yourapp.com"); // required by OpenRouter
         request.Headers.Add("X-Title", "MyApp"); // optional but recommended
 
