@@ -22,10 +22,10 @@ namespace AiMultiAgentUI.Engines
             var dev = new DeveloperAgent(_ai, _logger);
             var rev = new ReviewerAgent(_ai, _logger);
 
-            var req = await po.Run(idea);
-            var architecture = await arch.Run(req);
-            var code = await dev.Run(architecture);
-            var review = await rev.Run(code);
+            var req =  po.Run(idea).Result;
+            var architecture =  arch.Run(req).Result;
+            var code =  dev.Run(architecture).Result;
+            var review = rev.Run(code).Result;
 
             return new WorkflowResult
             {
