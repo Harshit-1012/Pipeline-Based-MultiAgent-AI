@@ -24,7 +24,7 @@ public class OpenRouterService : IAIProvider
 
         request.Headers.Authorization =
             new AuthenticationHeaderValue("Bearer", _apiKey);
-Console.WriteLine("API KEY = " + _apiKey);
+        Console.WriteLine("API KEY = " + _apiKey);
         request.Headers.Add("HTTP-Referer", "https://yourapp.com"); // required by OpenRouter
         request.Headers.Add("X-Title", "MyApp"); // optional but recommended
 
@@ -47,11 +47,11 @@ Console.WriteLine("API KEY = " + _apiKey);
         var json = await response.Content.ReadAsStringAsync();
 
         using var doc = JsonDocument.Parse(json);
-if (!doc.RootElement.TryGetProperty("choices", out var choices))
-{
-    var error = doc.RootElement.ToString();
-    throw new Exception("OpenRouter failed: " + error);
-}
+        if (!doc.RootElement.TryGetProperty("choices", out var choices))
+        {
+            var error = doc.RootElement.ToString();
+            throw new Exception("OpenRouter failed: " + error);
+        }
         return doc.RootElement
             .GetProperty("choices")[0]
             .GetProperty("message")
